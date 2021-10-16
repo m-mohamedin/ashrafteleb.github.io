@@ -5,14 +5,16 @@ on:
     types: [published]
 
 jobs:
-  print-username:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: MCJack123/ghaction-generate-release-hashes@v1
+    - name: Checkout reposistory
+      uses: MCJack123/ghaction-generate-release-hashes@v1
       with:
         hash-type: sha1
         file-name: hashes.txt
-      - uses: actions/upload-artifact@v2
+    - name: Installing Node
+      uses: actions/upload-artifact@v2
       with:
         name: Asset Hashes
         path: hashes.txt
