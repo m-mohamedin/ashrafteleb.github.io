@@ -8,22 +8,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout reposistory
+    - name: Generate Hashes
       uses: MCJack123/ghaction-generate-release-hashes@v1
       with:
-        hash-type: sha1
+        hash-type: sha256
         file-name: hashes.txt
-    - name: Installing Node
-      uses: actions/upload-artifact@v2
-      with:
-        name: Asset Hashes
-        path: hashes.txt
-    - name: Upload binaries to release
+    - name: Upload Hashes to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: hashes.txt
         overwrite: true
-        asset_name: Files Hashes
+        asset_name: Files-SHA256-Hashes.txt
         tag: ${{ github.ref }}
 
