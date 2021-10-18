@@ -24,5 +24,6 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: hashes.txt
         overwrite: true
-        file_glob: true
+        asset_name: Files Hashes
+        tag: ${{ github.ref }}
 
